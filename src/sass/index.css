@@ -1,12 +1,10 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
@@ -22,7 +20,6 @@ img {
 }
 
 a {
-  // color: currentColor;
   text-decoration: none;
 }
 
@@ -50,16 +47,16 @@ select:focus {
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
-  clip-path: inset(100%);
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
 
 .section {
   max-width: 100%;
-  padding: 14px;
+  padding: 20px;
 }
 
 .load-more {
@@ -67,11 +64,9 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   border-radius: 30px;
   border: none;
-
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -86,6 +81,7 @@ select:focus {
   justify-content: center;
   background-color: rgb(59, 59, 238);
 }
+
 .search-box {
   position: relative;
 }
@@ -109,14 +105,13 @@ select:focus {
   border-radius: 0 4px 4px 0;
   width: 40px;
   height: 38px;
-  background-image: url('../images/search.svg');
+  background-image: url("../images/icon-search.svg");
   background-size: 22px 20px;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
 }
 
-// ------------------ GALLERY -----------------
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -128,8 +123,7 @@ select:focus {
   height: 350px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .gallery__item {
@@ -144,7 +138,8 @@ select:focus {
 .gallery__image {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: transform var(--animation-duration) var(--timing-function);
 }
 
@@ -164,13 +159,38 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 15px;
+  font-size: 16px;
   padding: 0 10px;
 }
 
 .info-item {
-  // width: calc((100% - 36px) / 4);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+.example {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  background-color: #fff;
+  color: #2f2f37;
+  max-width: 960px;
+  padding: 16px;
+}
+
+.example code {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #ff6b0a;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.example .background {
+  height: 240px;
+  background-image: url("../images/logo.png");
+  background-size: cover;
+  background-position: center;
+}/*# sourceMappingURL=index.css.map */
