@@ -75,7 +75,7 @@ function loadMoreArticles() {
       newsApiService.countQuery += hits.length;
       if (hits.length === 0) {
         loadMoreBtn.hide();
-        return Notify.warning(
+        return Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
       }
@@ -120,11 +120,5 @@ function clearArticlesMarkup() {
 }
 
 function isLoadMore() {
-  console.log(
-    'isLoad',
-    newsApiService.totalQuery - newsApiService.countQuery,
-    newsApiService.totalQuery,
-    newsApiService.countQuery
-  );
   return newsApiService.totalQuery - newsApiService.countQuery > 0;
 }
