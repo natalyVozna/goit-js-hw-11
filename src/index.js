@@ -28,6 +28,8 @@ let cardHeight = 0;
 refs.serchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', loadMoreArticles);
 
+// loadMoreBtn.hide();
+
 function onSearch(e) {
   e.preventDefault();
 
@@ -41,8 +43,8 @@ function onSearch(e) {
   clearArticlesMarkup();
   newsApiService.resetPage();
 
-  // loadMoreBtn.show();
-  // loadMoreBtn.disable();
+  loadMoreBtn.show();
+  loadMoreBtn.disable();
   newsApiService
     .fetchArticles()
     .then(({ hits, totalHits }) => {
@@ -57,8 +59,8 @@ function onSearch(e) {
         );
       } else {
         console.log('2', hits);
-        loadMoreBtn.show();
-        loadMoreBtn.disable();
+        // loadMoreBtn.show();
+        // loadMoreBtn.disable();
         Notify.success(`Hooray! We found ${totalHits} images.`);
         fetchArticles(hits);
       }
