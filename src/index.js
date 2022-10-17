@@ -43,24 +43,23 @@ function onSearch(e) {
   clearArticlesMarkup();
   newsApiService.resetPage();
 
-  loadMoreBtn.show();
-  loadMoreBtn.disable();
+  // loadMoreBtn.show();
+  // loadMoreBtn.disable();
   newsApiService
     .fetchArticles()
     .then(({ hits, totalHits }) => {
       newsApiService.totalQuery = totalHits;
       newsApiService.countQuery = hits.length;
-      console.log('hits.length', hits.length, hits.length === 0);
+
       if (hits.length === 0) {
         loadMoreBtn.hide();
-        console.log('1');
+
         return Notify.warning(
           'Sorry, there are no images matching your search query. Please try again.'
         );
       } else {
-        console.log('2', hits);
-        // loadMoreBtn.show();
-        // loadMoreBtn.disable();
+        loadMoreBtn.show();
+        loadMoreBtn.disable();
         Notify.success(`Hooray! We found ${totalHits} images.`);
         fetchArticles(hits);
       }
@@ -87,7 +86,6 @@ function loadMoreArticles() {
 }
 
 function fetchArticles(hits) {
-  console.log('fetch', hits);
   appendArticlesMarkup(hits);
   cardHeight = document
     .querySelector('.gallery')
@@ -120,13 +118,6 @@ function appendArticlesMarkup(articles) {
 function clearArticlesMarkup() {
   refs.galleryContainer.innerHTML = '';
 }
-
-// console.log(
-//   'isLoad 2',
-//   newsApiService.totalQuery - newsApiService.countQuery,
-//   newsApiService.totalQuery,
-//   newsApiService.countQuery
-// );
 
 function isLoadMore() {
   console.log(
