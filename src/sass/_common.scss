@@ -170,7 +170,7 @@ button:disabled {
 }
 
 .gallery-image {
-  height: auto;
+  height: 100%;
   width: 100%;
   object-fit: cover;
   transition: transform var(--animation-duration) var(--timing-function);
