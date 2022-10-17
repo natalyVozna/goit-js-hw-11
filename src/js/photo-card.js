@@ -8,9 +8,9 @@ export default function createPhotoCard({
   downloads,
 }) {
   return `<div class="photo-card">
-  <div class="gallery__item">
+  <div class="gallery-item">
   <a href="${largeImageURL}" >
-        <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
+        <img class="gallery-image" src="${webformatURL}" alt="${tags}" loading="lazy" />
         </a>
   </div>
   <div class="info-box">

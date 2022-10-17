@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>Homework 11</title>
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    /> -->
   </head>
   <body>
     <form class="search-form" id="search-form">
@@ -19,12 +22,20 @@
         />
         <button class="search-btn" type="submit"></button>
       </div>
-      <button type="button" class="load-more">Load more</button>
     </form>
     <section class="section">
       <div class="gallery"></div>
-      <!-- ❗️❗️❗️ Add partials like so for every page -->
-      <!-- <include src="./partials/example.html"></include> -->
+      <button type="button" class="load-more is-hidden">
+        <span
+          class="spinner-border spinner-border-sm mr-2 spinner"
+          role="status"
+        ></span>
+        <span class="label">Load more</span>
+      </button>
     </section>
+
+    <script type="module" src="./index.js"></script>
+
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
   </body>
 </html>

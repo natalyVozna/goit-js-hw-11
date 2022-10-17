@@ -32,16 +32,25 @@ select:focus {
   outline: none;
 }
 
+button:focus {
+  outline: none !important;
+  border: none;
+}
+
+button:disabled {
+  opacity: 0.7;
+}
+
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
 }
 
-.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
+// .is-hidden {
+//   opacity: 0;
+//   pointer-events: none;
+//   visibility: hidden;
+// }
 
 .visually-hidden {
   position: absolute;
@@ -67,15 +76,31 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 20px auto 0;
 
   cursor: pointer;
   border-radius: 30px;
   border: none;
-
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
+  background-color: #4a4abc;
+  color: #fff;
+
+  transition: transform var(--animation-duration) var(--timing-function);
+}
+
+.load-more:hover {
+  transform: scale(1.05);
+}
+
+.load-more.is-hidden {
+  display: none;
+}
+
+.load-more .spinner.is-hidden {
+  display: none;
 }
 
 .search-form {
@@ -84,7 +109,7 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(59, 59, 238);
+  background-color: #4a4abc;
 }
 .search-box {
   position: relative;
@@ -132,7 +157,7 @@ select:focus {
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-.gallery__item {
+.gallery-item {
   height: calc(100% - 90px);
   display: flex;
 }
@@ -141,21 +166,11 @@ select:focus {
   transform: scale(1.03);
 }
 
-.gallery__image {
+.gallery-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
   transition: transform var(--animation-duration) var(--timing-function);
-}
-
-.gallery__link {
-  display: block;
-  text-decoration: none;
-  height: 100%;
-}
-
-.gallery__link:hover {
-  cursor: zoom-in;
 }
 
 .info-box {
@@ -164,8 +179,11 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 15px;
+  font-size: 11px;
   padding: 0 10px;
+  @media screen and (min-width: 1220px) {
+    font-size: 14px;
+  }
 }
 
 .info-item {
