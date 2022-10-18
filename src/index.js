@@ -68,7 +68,7 @@ async function loadMoreArticles() {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    setTimeout(() => fetchArticles(hits), 1500);
+    fetchArticles(hits);
     gallery.refresh();
   } catch (error) {
     Notify.failure('Qui timide rogat docet negare');
