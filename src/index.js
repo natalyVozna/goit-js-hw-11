@@ -5,12 +5,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import LoadMoreBtn from './js/load-more-btn.js';
 import { Notify } from 'notiflix';
 
-const options = {
-  headers: {
-    Authorization: '30593721-3615c14b1fd526cc46c7cd9ff',
-  },
-};
-
 const refs = {
   serchForm: document.querySelector('.search-form'),
   galleryContainer: document.querySelector('.gallery'),
@@ -28,12 +22,10 @@ let cardHeight = 0;
 refs.serchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', loadMoreArticles);
 
-// loadMoreBtn.hide();
-
-function onSearch(e) {
+async function onSearch(e) {
   e.preventDefault();
-
   newsApiService.query = e.target.elements.searchQuery.value.trim();
+
   if (newsApiService.query === '') {
     refs.galleryContainer.innerHTML = '';
     loadMoreBtn.hide();
@@ -43,46 +35,44 @@ function onSearch(e) {
   clearArticlesMarkup();
   newsApiService.resetPage();
 
-  // loadMoreBtn.show();
-  // loadMoreBtn.disable();
-  newsApiService
-    .fetchArticles()
-    .then(({ hits, totalHits }) => {
-      newsApiService.totalQuery = totalHits;
-      newsApiService.countQuery = hits.length;
+  try {
+    const { hits, totalHits } = await newsApiService.fetchArticles();
+    newsApiService.totalQuery = totalHits;
+    newsApiService.countQuery = hits.length;
+    if (hits.length === 0) {
+      loadMoreBtn.hide();
 
-      if (hits.length === 0) {
-        loadMoreBtn.hide();
-
-        return Notify.warning(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-      } else {
-        loadMoreBtn.show();
-        loadMoreBtn.disable();
-        Notify.success(`Hooray! We found ${totalHits} images.`);
-        fetchArticles(hits);
-      }
-    })
-    .catch(error => Notify.failure('Qui timide rogat docet negare'));
+      return Notify.warning(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+    } else {
+      loadMoreBtn.show();
+      loadMoreBtn.disable();
+      Notify.success(`Hooray! We found ${totalHits} images.`);
+      fetchArticles(hits);
+    }
+  } catch (error) {
+    Notify.failure('Qui timide rogat docet negare');
+  }
 }
 
-function loadMoreArticles() {
+async function loadMoreArticles() {
   loadMoreBtn.disable();
-  newsApiService
-    .fetchArticles()
-    .then(({ hits }) => {
-      newsApiService.countQuery += hits.length;
-      if (hits.length === 0) {
-        loadMoreBtn.hide();
-        return Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-      }
-      fetchArticles(hits);
-      gallery.refresh();
-    })
-    .catch(error => Notify.failure('Qui timide rogat docet negare'));
+
+  try {
+    const { hits } = await newsApiService.fetchArticles();
+    newsApiService.countQuery += hits.length;
+    if (hits.length === 0) {
+      loadMoreBtn.hide();
+      return Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+    }
+    setTimeout(() => fetchArticles(hits), 1500);
+    gallery.refresh();
+  } catch (error) {
+    Notify.failure('Qui timide rogat docet negare');
+  }
 }
 
 function fetchArticles(hits) {
