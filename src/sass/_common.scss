@@ -148,11 +148,11 @@ button:disabled {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 26px;
 }
 
 .photo-card {
-  width: calc((100% - 36px) / 4);
+  width: calc((100% - 78px) / 4);
   height: 350px;
   position: relative;
   overflow: hidden;
