@@ -22,6 +22,11 @@ let cardHeight = 0;
 refs.serchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', loadMoreArticles);
 
+gallery = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 async function onSearch(e) {
   e.preventDefault();
   newsApiService.query = e.target.elements.searchQuery.value.trim();
@@ -69,7 +74,7 @@ async function loadMoreArticles() {
       );
     }
     fetchArticles(hits);
-    gallery.refresh();
+    // gallery.refresh();
   } catch (error) {
     Notify.failure('Qui timide rogat docet negare');
   }
@@ -99,10 +104,11 @@ function fetchArticles(hits) {
 function appendArticlesMarkup(articles) {
   const markup = articles.map(article => createPhotoCard(article)).join('');
   refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
-  gallery = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
+  gallery.refresh();
+  // gallery = new SimpleLightbox('.gallery a', {
+  //   captionsData: 'alt',
+  //   captionDelay: 250,
+  // });
 }
 
 function clearArticlesMarkup() {
